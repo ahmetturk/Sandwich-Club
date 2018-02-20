@@ -30,4 +30,4 @@ Through this project, you will:
 - Populate all fields in the layout accordingly
 
 ## Screenshots
-<img src="https://i.hizliresim.com/W77j24.png" width="240px"> <img src="https://i.hizliresim.com/3EEk89.png" width="240px">
+<img src="https://i.hizliresim.com/W77j24.png" width="240px"> <img src="https://i.hizliresim.com/JQDYGj.png" width="240px">
