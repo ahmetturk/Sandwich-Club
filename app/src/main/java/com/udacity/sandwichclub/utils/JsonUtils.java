@@ -32,24 +32,16 @@ public class JsonUtils {
             String mainName = name.getString(MAIN_NAME_CODE);
 
             JSONArray JSONArrayAlsoKnownAs = name.getJSONArray(ALSO_KNOWN_AS_CODE);
-            List<String> alsoKnownAs = new ArrayList<>(JSONArrayAlsoKnownAs.length());
+            List<String> alsoKnownAs = convertToListFromJsonArray(JSONArrayAlsoKnownAs);
 
-            for (int i = 0; i < JSONArrayAlsoKnownAs.length(); i++) {
-                alsoKnownAs.add(JSONArrayAlsoKnownAs.getString(i));
-            }
-
-            String placeOfOrigin = mainJsonObject.getString(PLACE_OF_ORIGIN_CODE);
+            String placeOfOrigin = mainJsonObject.optString(PLACE_OF_ORIGIN_CODE);
 
             String description = mainJsonObject.getString(DESCRIPTION_CODE);
 
             String image = mainJsonObject.getString(IMAGE_CODE);
 
             JSONArray JSONArrayIngredients = mainJsonObject.getJSONArray(INGREDIENTS_CODE);
-            List<String> ingredients = new ArrayList<>(JSONArrayIngredients.length());
-
-            for (int i = 0; i < JSONArrayIngredients.length(); i++) {
-                ingredients.add(JSONArrayIngredients.getString(i));
-            }
+            List<String> ingredients = convertToListFromJsonArray(JSONArrayIngredients);
 
             return new Sandwich(mainName, alsoKnownAs, placeOfOrigin, description, image, ingredients);
 
@@ -58,5 +50,15 @@ public class JsonUtils {
             e.printStackTrace();
             return null;
         }
+    }
+
+    private static List<String> convertToListFromJsonArray(JSONArray jsonArray) throws JSONException {
+        List<String> list = new ArrayList<>(jsonArray.length());
+
+        for (int i = 0; i < jsonArray.length(); i++) {
+            list.add(jsonArray.getString(i));
+        }
+
+        return list;
     }
 }
